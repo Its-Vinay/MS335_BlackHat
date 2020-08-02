@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="container">
+<div class="row" style="padding-top:5%">
+<div class="col-md-3">
+
+
+{% if val %}
+    <form action="upload" enctype="multipart/form-data" method="post">
+
+    {% csrf_token %}
+		<div class="form-group">
+			<input class="form-control-file" id="exampleFormControlFile1" name="image" type="file"/>
+		</div>
+		<div class="form-group">
+			<a href="#"><button style="background-color:#183883;color:white" type="submit">submit</button></a>
+		</div>
+	</form>
+{% else %}
+<p>Press Q to stop camera</p>
+
+{% endif %}
+
+
+</div>
+</div>
+
+{% if res %}
+<p>{{ res }}</p>
+<img src="{% static 'face_outputs/out.jpg' %}"/ style="max-height:200px;max-width:200px">
+{{ bmi }}
+{% endif %}
+
+
+{% if cam_bmi %}
+<p>{{ cam_bmi }}</p>
+{% endif %}
+
+
+
+
+
+
+</div>
+
+<script>
+  (function(){
+    var video = document.getElementById('video'),
+    canvas = document.getElementById('canvas'),
+    context = canvas.getContext('2d'),
+    photo = document.getElementById('photo'),
+    vendorUrl = window.URL || window.webkitURL;
+
+    //to start the webcam in the browser
+   navigator.mediaDevices.getUserMedia({video: true, audio: false})
+    .then(function(stream) {
+      video.srcObject = stream;
+      video.play();
+    })
+    .catch(function(err) {
+      console.log("An error occurred: " + err);
+    });
+
+    document.getElementById('capture').addEventListener('click',function(){
+      context.drawImage(video, 0 , 0, 400, 300);
+      photo.setAttribute('src',canvas.toDataURL('image/png'));
+
+    });
+
+  })();
+
+
+/*  function setup(){
+    loadJSON("http://127.0.0.1:8000/bmi/bmi_api/",gotData);
+  }
+  function gotData(data){
+    print(data);
+  } */
+
+</script>
+
+{% endblock %}
