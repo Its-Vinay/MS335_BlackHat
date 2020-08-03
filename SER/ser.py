@@ -11,7 +11,7 @@ import msvcrt, time
 
 
 def ser(file):
-    path='Emotion_Voice_Detection_Model.h5'
+    path='Emotion_Voice_Detection_Model.h5'     #model file
     loaded_model = keras.models.load_model(path)
     data, sampling_rate = librosa.load(file)
     mfccs = np.mean(librosa.feature.mfcc(y=data, sr=sampling_rate, n_mfcc=40).T, axis=0)
@@ -63,4 +63,4 @@ def final(*args):
     else:
         ser(args[0])
 if __name__ == '__main__':
-    final('321.wav')
+    final('321.wav')     # input 0 for webcam and input file name for input audio file from storage
