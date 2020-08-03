@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="container">
+<div class="row" style="padding-top:5%">
+<div class="col-md-6" style="width: 100%;">
+
+
+{% if val %}
+    <form action="True/upload" enctype="multipart/form-data" method="post">
+
+    {% csrf_token %}
+    <div class="form-group">
+      <input class="form-control-file" id="exampleFormControlFile1" name="video" type="file"/>
+    </div>
+    <div class="form-group">
+      <a href="#"><button class="btn btn-primary"  type="submit">submit</button></a>
+    </div>
+  </form>
+{% endif %}
+</div>
+
+</div>
+
+{% if weapon_ans %}
+<p style="font-weight: 700; ">{{ weapon_ans }}</p>
+{% endif %}
+
+</div>
+{% endblock %}

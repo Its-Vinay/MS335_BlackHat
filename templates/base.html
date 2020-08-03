@@ -25,17 +25,17 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">BMI Check</a>
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Voice Detection</a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="{% url 'bmi:bmi_index' bmi_inp=False %}" data-toggle="tooltip" data-placement="right" title="Press Qto stop the camera">Webcam</a>
-          <a class="dropdown-item" href="{% url 'bmi:bmi_index' bmi_inp=True %}">Input Image</a>
+          <a class="dropdown-item" href="{% url 'voice:voice_index' voice_inp=False %}" data-toggle="tooltip" data-placement="right" title="Press Qto stop the Microphone">Microphone</a>
+          <a class="dropdown-item" href="{% url 'voice:voice_index' voice_inp=True %}">Input Voice File</a>
         </div>
       </li>
       <li class="nav-item dropdown">
-  		<a class="nav-link dropdown-toggle" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Uniform Check</a>
+  		<a class="nav-link dropdown-toggle" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Weapon Detection</a>
   		<div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-    		<a class="dropdown-item" href="{% url 'uniform:uniform_index' uni_inp=False %}">Webcam Capture</a>
-    		<a class="dropdown-item" href="{% url 'uniform:uniform_index' uni_inp=True %}">Input Image</a>
+    		<a class="dropdown-item" href="{% url 'weapon:weapon_index' weapon_inp=False %}">Webcam Capture</a>
+    		<a class="dropdown-item" href="{% url 'weapon:weapon_index' weapon_inp=True %}">Input Image</a>
   		</div>
 	   </li>
     </ul>
