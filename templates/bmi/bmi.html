@@ -1,0 +1,106 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<style type="text/css">
+  #map {
+        height: 100%;
+      }
+</style>
+<div class="container">
+<div class="row" style="padding-top:5%">
+<div class="col-md-6" style="width: 100%">
+
+
+{% if val %}
+    <form action="upload" enctype="multipart/form-data" method="post">
+
+    {% csrf_token %}
+		<div class="form-group">
+			<input class="form-control-file" id="exampleFormControlFile1" name="image" type="file"/>
+		</div>
+		<div class="form-group">
+			<a href="#"><button class="btn btn-primary" type="submit">submit</button></a>
+		</div>
+	</form>
+
+
+{% endif %}
+</div>
+
+<!-----carousel--------->
+<!--
+<div class="col-md-6" style="width: 100%">
+<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+  <ol class="carousel-indicators">
+    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+  </ol>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="https://i2s3e2c6.stackpathcdn.com/wp-content/uploads/2019/06/BMI-Product-image-2-1.jpg" class="d-block w-100" alt="...">
+    </div>
+    <div class="carousel-item">
+      <img src="https://lh3.googleusercontent.com/proxy/eBBTlUwdMvL6duHQEJKRjAMsBjYn5EvC9yh8nfoN1ksyJXYajD62cYAfnowuF_vphObJgjEN53sPZzCqOUDsWTkjQKxrpMjBLMuB3OJI7mr5zGkhRXY" class="d-block w-100" alt="...">
+    </div>
+    <div class="carousel-item">
+      <img src="https://poster.keepcalmandposters.com/default/5716683_eat_healthy_and_stay_fit.png" class="d-block w-100" alt="...">
+    </div>
+  </div>
+ 
+</div>
+  
+</div>-->
+</div>
+
+{% if res %}
+<p style="font-weight: 700; ">{{ res }}%</p>
+<img src="{% static 'face_outputs/out.jpg' %}"/ style="width: 400px; height: 400px;">
+<br>
+<p style="font-weight: 700; ">BMI is : {{ bmi }}</p>
+{% endif %}
+
+
+{% if cam_bmi %}
+<p>{{ cam_bmi }}</p>
+{% endif %}
+
+
+
+
+
+
+</div>
+
+<script>
+  (function(){
+    var video = document.getElementById('video'),
+    canvas = document.getElementById('canvas'),
+    context = canvas.getContext('2d'),
+    photo = document.getElementById('photo'),
+    vendorUrl = window.URL || window.webkitURL;
+
+    //to start the webcam in the browser
+   navigator.mediaDevices.getUserMedia({video: true, audio: false})
+    .then(function(stream) {
+      video.srcObject = stream;
+      video.play();
+    })
+    .catch(function(err) {
+      console.log("An error occurred: " + err);
+    });
+
+    document.getElementById('capture').addEventListener('click',function(){
+      context.drawImage(video, 0 , 0, 400, 300);
+      photo.setAttribute('src',canvas.toDataURL('image/png'));
+
+    });
+
+  })();
+
+ 
+
+</script>
+
+
+{% endblock %}

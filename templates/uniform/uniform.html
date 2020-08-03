@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="container">
+<div class="row" style="padding-top:5%">
+<div class="col-md-6" style="width: 100%;">
+
+
+{% if val %}
+    <form action="True/upload" enctype="multipart/form-data" method="post">
+
+    {% csrf_token %}
+    <div class="form-group">
+      <input class="form-control-file" id="exampleFormControlFile1" name="image" type="file"/>
+    </div>
+    <div class="form-group">
+      <a href="#"><button class="btn btn-primary"  type="submit">submit</button></a>
+    </div>
+  </form>
+{% endif %}
+</div>
+
+</div>
+
+{% if res %}
+<p style="font-weight: 700; ">{{ res }}%</p>
+<!---<img src="{% static 'face_outputs/out.jpg' %}"/ style="max-height:500px;max-width:600px">--->
+<img src="{% static 'uni_outputs/uniform_output.jpg' %}"/ style="width: 400px; height: 400px;">
+<p style="font-weight: 700; ">{{ uni_ans }}</p>
+{% endif %}
+
+</div>
+{% endblock %}
